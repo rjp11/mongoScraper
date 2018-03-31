@@ -11,6 +11,9 @@ var app = express();
 var databaseUrl = "mongoScraper";
 var collections = ["ringerData"];
 
+// Serve static content for the app from the "public" directory in the application directory.
+app.use(express.static(path.join(__dirname, "public")));
+
 // Hook mongojs configuration to the db variable
 var db = mongojs(databaseUrl, collections);
 db.on("error", function (error) {
@@ -52,7 +55,9 @@ app.get("/scrape", function (req, res) {
 });
 
 
+var PORT = process.env.PORT || 3000;
+
 // Listen on port 3000
 app.listen(3000, function () {
-  console.log("App running on port 3000!");
+    console.log("Listening on port %s", PORT);
 });
