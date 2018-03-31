@@ -36,11 +36,12 @@ app.get("/scrape", function (req, res) {
     $("h2.c-entry-box--compact__title").each(function (i, element) {
       var title = $(element).text();
       var link = $(element).children().attr("href");
-      // var summary = $(element).
+      var summary = $(element).next('.p-dek').text();
 
       results.push({
         title,
-        link
+        link,
+        summary
       });
 
     });
