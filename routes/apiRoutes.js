@@ -5,7 +5,9 @@ var cheerio = require("cheerio");
 var databaseUrl = "mongoScraper";
 var collections = ["ringerData"];
 
-var db = mongojs(databaseUrl, collections);
+// CHANGE TO REQUIRE ( MODELS )
+// var db = mongojs(databaseUrl, collections);
+var db = require("../models")
 
 module.exports = function (app) {
 
@@ -18,23 +20,28 @@ module.exports = function (app) {
                 throw error;
             }
 
-            var results = [];
+            var result = {};
 
             $("h2.c-entry-box--compact__title").each(function (i, element) {
-                var title = $(element).text();
-                var link = $(element).children().attr("href");
-                var summary = $(element).next('.p-dek').text();
+                // var title = $(element).text();
+                // var link = $(element).children().attr("href");
+                // var summary = $(element).next('.p-dek').text();
 
-                results.push({
-                    title,
-                    link,
-                    summary
-                });
+                result.title = $(this).text();
+                result.link = $(this).children().attr("href");
+                result.summary = $(this).next('.p-dek').text();
+
+                db.Article.create(result)
+                    .then(function (dbArticle) {
+                        console.log(dbArticle);
+                    })
+                    .catch(function (err) {
+                        return res.json(err);
+                    });
 
             });
 
-            db.scrapedData.insert(results);
-            res.json(results);
+           res.send("Scrape Complete")
         });
     });
 
