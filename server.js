@@ -22,7 +22,7 @@ mongoose.connect("mongodb://localhost/mongoScraper");
 
 
 require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+// require("./routes/htmlRoutes")(app);
 
 var PORT = process.env.PORT || 3000;
 
