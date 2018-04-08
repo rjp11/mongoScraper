@@ -1,7 +1,6 @@
-// module.exports = function (app) {
+var router = require("express").Router();
+var htmlController = require("../controllers/htmlController");
 
-//     // Main route (simple Hello World Message)
-//     app.get("/", function (req, res) {
-//         res.send("Hello world");
-//     });
-// };
+router.get("/", htmlController.find);
+
+module.exports = router;
