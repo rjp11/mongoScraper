@@ -18,7 +18,7 @@ $.getJSON("api/articles/", function (data) {
 
 $(document).on("click", "#scrape", function () {
   $.ajax({
-    method: "GET",
+    method: "POST",
     url: "api/articles/scrape"
   })
   .then(function(data){
