@@ -8,11 +8,12 @@ var db = require("../models");
 var scrape = require("../logic/scrape");
 
 // localhost/api/articles
+router.post("/scrape", scrape);
 router.get("/", articleController.findAll);
 router.get("/:id", articleController.find);
 router.post("/:id", commentController.create);
 router.delete("/:id", commentController.delete);
-router.post("/scrape", scrape);
+
 
 
 module.exports = router;

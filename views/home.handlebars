@@ -40,7 +40,7 @@
             url: "api/articles/scrape"
         })
         .then(function(data){
-            location.reload();
+            //location.reload();
         })
     });
 
@@ -85,8 +85,7 @@
     });
 
     
-    $(document).on("click", "#savenote", function (e) {
-        e.preventDefault();
+    $(document).on("click", "#savenote", function () {
         
         var articleId = $(this).attr("data-id");
         var title = $("#titleinput").val();
